@@ -1,0 +1,25 @@
+.container {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    width: 250%;
+    height: 150%;
+    align-items: center;
+  }
+  
+  .form-group {
+    margin-bottom: 5px;
+  }
+  
+  .form-control {
+    padding: 4px 8px;
+    font-size: 12px;
+    min-height: 10px;
+    min-width: 300px;
+  }
+  
+  .btn-primary {
+    position: relative;
+    
+    font-size: 14px;
+  }
+  

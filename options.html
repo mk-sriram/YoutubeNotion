@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <link rel="stylesheet" href="options.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+<body>
+<div class="container">
+  <h4>YTNotion</h4>
+  <form id="configForm">
+    <div class="form-group">
+      <label for="databaseId">Notion Database ID*</label>
+      <input type="text" class="form-control" id="databaseId"  placeholder="Enter Notion Database ID" required>
+    </div>
+    <div class="form-group">
+      <label for="apiToken">Notion API Token*</label>
+      <input type="text" class="form-control" id="apiToken" placeholder="Enter Notion API Token" required>
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="executeLink()">Create Link</button>
+  </form>
+  <div id="successMessage" style="display: none; color: green;">Successfully submitted!</div>
+</div>
+
+<script>
+    function executeLink(){
+        
+      
+    console.log("after timeout")
+    document.getElementById('configForm').addEventListener('submit', function(event) {
+        
+      // Get form field values
+      var databaseId = document.getElementById('databaseId').value;
+      var apiToken = document.getElementById('apiToken').value;
+    
+      console.log("after reciing values")
+      // Create message object with form data
+      console.log("starting function")
+        var successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'block';
+
+        setTimeout(function() {
+            successMessage.style.display = 'none';
+        }, 3000); // Display the success message for 3 seconds
+  
+      var message = {
+        type: 'INFOMSG', //helps us to identify the msg from contentScript.js 
+        data: {
+          databaseId: databaseId,
+          apiToken: apiToken
+        }
+      };
+      
+      // Send message to the content script
+      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, message);
+      });
+      // Reset form fields
+      document.getElementById('databaseId').value = '';
+      document.getElementById('apiToken').value = '';
+
+
+      //after successfuly linking!
+     
+    });
+
+    }
+  </script>
+</body>
+</html>
