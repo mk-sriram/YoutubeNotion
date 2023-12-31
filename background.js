@@ -9,6 +9,10 @@ chrome.runtime.onInstalled.addListener(() => {
     });
   });
 
+
+
+
+/*
   const extensions = 'https://youtube.com'
   chrome.action.onClicked.addListener(async (tab) => {
     if (tab.url.startsWith(extensions)) {
@@ -36,3 +40,12 @@ chrome.runtime.onInstalled.addListener(() => {
       }
     }
   });
+*/
+
+chrome.action.onClicked.addListener(async (tab) => {
+
+  chrome.tabs.executeScript({
+    file: 'contentScript.js'
+  });
+
+});
